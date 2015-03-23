@@ -1,5 +1,4 @@
 
-
 listmake : main.o file.o
 	gcc -o listmake main.o file.o
 
