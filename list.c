@@ -11,10 +11,10 @@ node* list=NULL;				//Creating a list's head .
 
 void add(int value){				//Node adding function.
  	
-	printf("hey");		 
+			 
 	node* new;		
 					
-	if(list=NULL){				//if empty list create the first node
+	if(list==NULL){				//if empty list create the first node
 	printf("coucou"); 
 	new = (node*)malloc(sizeof(node)); 
 	new->data = value; 
@@ -26,7 +26,7 @@ void add(int value){				//Node adding function.
 	 
 	node* iterator = list; 
 	
-/*	while(iterator->next  != NULL)
+	while(iterator->next  != NULL)
 	 {					// until we found the free spot 
 		iterator = iterator->next;	
 	 }
@@ -34,7 +34,7 @@ void add(int value){				//Node adding function.
 	 new->data = value;
 	 new ->next = NULL;   
 	 iterator->next = new; 
-*/	} 
+	} 
 }
 
 
@@ -46,7 +46,7 @@ void prettyPrint(){
 	printf("Content of list is the following : \n");
 	node* read =  list; 
 	while (read !=NULL){
-	 printf("%d", read->data);	//Print each node's value 
+	 printf("%d ", read->data);	//Print each node's value 
 	 read = read->next; 		// until the one before the last
 	}
  }
@@ -64,7 +64,7 @@ boolean delete(int value){
  
  node* found;
  found = find(value);	
- if(found != NULL)				//If the find() function found
+ /*if(found != NULL)				//If the find() function found
 	{					// a pointer do :
   	node* beforedelete = found;
   	node* todelete = beforedelete->next; 
@@ -75,7 +75,7 @@ boolean delete(int value){
 	free(todelete);				//Free the space used for the
  	return 1; 				// deleted node.
  	}
- 	else return 0 ; 
+ 	else*/ return 0 ; 
  } 
 
 
@@ -83,8 +83,8 @@ boolean delete(int value){
 node* find(int avalue){
  	node* pointer =list;
 	node* anext;
-	
- 	while(pointer !=NULL)
+		
+	while(pointer->next !=NULL)
 	{
 	anext = pointer->next; 
      	 if(anext->data == avalue) return pointer;  

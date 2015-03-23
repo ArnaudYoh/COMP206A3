@@ -21,9 +21,8 @@ void main(){
 	}
 
 
- while ( !feof(file) )						//Create a node for each number present in the file.
+ while ( fscanf(file, "%d", &value)!=NULL )						//Create a node for each number present in the file.
  {								
-	fscanf(file, "%d", &value);
 	add(value);
  }
 
@@ -39,7 +38,7 @@ void main(){
  prettyPrint();
  
  while(1){
-  printf("Do you want me to take care of another integer ? :\n ");
+  printf("\nDo you want me to take care of another integer ? :\n ");
   scanf("%s", answer);
   if (strcmp(answer,"yes")==0 || strcmp(answer,"YES")==0 		//if the user say yes then reask for an integer to delete
 		|| strcmp(answer,"Y")==0 || strcmp(answer,"y")==0 
