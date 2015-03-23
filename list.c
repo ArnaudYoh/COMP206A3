@@ -1,35 +1,40 @@
 #include <stdio.h>
-#include <stlib.h>
+#include <stdlib.h>
 
 
 
 
-typedef struct NODE{	//Defining a Node.
+typedef struct node{				//Defining a Node.
 	int data; 
-	NODE* next; 
-	}aNode;
+	struct node* next; 
+	}node;					//Creating a Node, a list's head , and an iterator. 
 
-
-
-aNode* list = NULL; 	//Creating the List's head.
+node* list=NULL;				//Creating a list's head and an iterator.
 
 
 
 void add(int value){	//Node adding function.
 	
-	aNode* free;	//Creating pointers to find a freespot
-	aNode* new;	// and create a new node
-	free = list;	// let the free pointer points  
-			// to the begining of the List.
-	
-	while(free->next != NULL){	//Until we found the free spot iterate
-		free = free->next;	// through the list.
-	}
-	
-	new = (aNode *)malloc(sizeof(aNode));	//Now create a new Node.
-	new->data = &value;
+				//Creating pointers to 
+	node* new;		// create a new node
+	node* iterator= NULL;	// let the free pointer points  
+	iterator = list;	// to the list's head.
+
+	if(list=NULL){				//If the List is empty,
+	new = (node*)malloc(sizeof(node));	//create the first node
+	new->data = value;			//and let list point to it.
 	new->next = NULL;
-	list->next = new; 
+	list = new;
+	}
+
+	else{
+	 while(iterator->next != NULL){	//Until we found the free spot iterate
+		iterator = iterator->next;	// through the list.
+	 }
+	 new = (node*)malloc(sizeof(node));	//Now create a new Node.
+	 new->data = value;
+	 new->next = NULL;
+	} 
 }
 
 
@@ -39,12 +44,13 @@ void prettyPrint(){
  if(list != NULL)	//if the list is non-empty
 	{
 	printf("Content of list is the following : ");
-	aNode* read = list ;
+	node* read = NULL ;
+	read = list; 
 	while (read->next !=NULL){
-	prinf("%d ", read->data);	//Print each node's value 
-	read = read->next; 		// until the one before the last
+	 printf("%d", read->data);	//Print each node's value 
+	 read = read->next; 		// until the one before the last
 	}
-	printf("%d ", read->data);	//Print the last node value
+	printf("%d", read->data);	//Print the last node value
 	}
 else 					//If the list is empty just say it.
 	{
@@ -52,32 +58,36 @@ else 					//If the list is empty just say it.
 	}
  } 
 
+node* find(int);
 
-
-int delete(int avalue){
-
- if(find(avalue)!=NULL)				//If the find() function found
+int delete(int value){
+ 
+ node* found = NULL;
+ found = find(value);	
+ if(found != NULL)				//If the find() function found
 	{					// a pointer do :
-  	aNode* beforedelete = find(avalue);
-  	aNode* todelete = beforedelete->next; 
+  	node* beforedelete = found;
+  	node* todelete = beforedelete->next; 
   	beforedelete->next = todelete->next;	//make the node before the one 
   						//to delete pointing to the node
 						// after the one to delete
 
 	free(todelete);				//Free the space used for the
- 	return 1; 				// node.
+ 	return 1; 				// deleted node.
  	}
  	else return 0 ; 
  } 
 
 
 
-NODE* find(int avalue){
- 	aNode* pointer = list;
+node* find(int avalue){
+ 	node* pointer = NULL;
+	pointer = list;
  	while(pointer->next !=NULL)
 	{
-  	aNode* anext = pointer->next; 
-  	if(next->value == &avalue) return pointer;  
+  	node* anext = NULL;
+	anext = pointer->next; 
+  	if(anext->data == avalue) return pointer;  
   	pointer = pointer->next; 
  	}
  	return NULL; 

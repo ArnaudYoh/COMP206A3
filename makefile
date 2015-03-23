@@ -1,6 +1,6 @@
 
-listmake : main.o file.o
-	gcc -o listmake main.o file.o
+listmake : main.o list.o
+	gcc -o listmake main.o list.o
 
 main.o : main.c list.c list.h
 	gcc -c main.c list.c
