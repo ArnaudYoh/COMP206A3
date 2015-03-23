@@ -3,19 +3,15 @@
 #include "list.h"
 
 
-
- 
 node* list=NULL;				//Creating a list's head .
-
-
+ 
 
 void add(int value){				//Node adding function.
  	
 			 
 	node* new;		
 					
-	if(list==NULL){				//if empty list create the first node
-	printf("coucou"); 
+	if(list==NULL){				//if empty list create the first node 
 	new = (node*)malloc(sizeof(node)); 
 	new->data = value; 
 	new->next = NULL;
@@ -60,11 +56,20 @@ void prettyPrint(){
 node* find(int);
 
 
-boolean delete(int value){
+boolean delete(int avalue){
  
  node* found;
- found = find(value);	
- /*if(found != NULL)				//If the find() function found
+ found = find(avalue);	
+ 
+if(list->data== avalue)
+ {
+ node* todelete = list; 
+ list = list->next; 
+ free(todelete); 
+ } 
+ 
+ 
+ else if(found != NULL)				//If the find() function found
 	{					// a pointer do :
   	node* beforedelete = found;
   	node* todelete = beforedelete->next; 
@@ -75,19 +80,21 @@ boolean delete(int value){
 	free(todelete);				//Free the space used for the
  	return 1; 				// deleted node.
  	}
- 	else*/ return 0 ; 
+ 	else  return 0 ; 
  } 
 
 
 
-node* find(int avalue){
- 	node* pointer =list;
+node* find(int avalue){				//function for finding a node given an integer . 
+ 	
+	node* pointer =list;
 	node* anext;
 		
 	while(pointer->next !=NULL)
-	{
-	anext = pointer->next; 
-     	 if(anext->data == avalue) return pointer;  
+	{ 
+	anext = pointer->next; 			//return the node before the one that matches.
+     	 if(anext->data == avalue){ 
+		return pointer;}  
   	pointer = anext; 
  	}
  	return NULL; 

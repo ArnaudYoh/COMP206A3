@@ -12,6 +12,7 @@ void main(){
  char line[100]; 
  int value; 
  int boolean;
+
  
  
  while(file == NULL ){						//ask the user until he enters an existing file name/ file path.
@@ -21,8 +22,9 @@ void main(){
 	}
 
 
- while ( fscanf(file, "%d", &value)!=NULL )						//Create a node for each number present in the file.
+ while ( fgets(line, sizeof(line), file) )			//Create a node for each number present in the file.
  {								
+	sscanf(line, "%d", &value);
 	add(value);
  }
 
@@ -30,7 +32,7 @@ void main(){
  prettyPrint();								//Print the LinkedList
   
 
- printf("Please enter a number you want to delete :\n ");		//Ask for an integer to delete.
+ printf("\nPlease enter a number you want to delete :\n ");		//Ask for an integer to delete.
  scanf("%d", &value );
  boolean = delete(value);						//Delete the value if found.
  if(boolean == false ) {printf("NUMBER WAS NOT FOUND\n");}		//Print the sentence according to the returned boolean.
