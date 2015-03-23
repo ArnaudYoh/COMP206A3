@@ -9,34 +9,32 @@ node* list=NULL;				//Creating a list's head .
 
 
 
-void add(int value){		//Node adding function.
+void add(int value){				//Node adding function.
  	
-				//Creating pointers to 
-	node* new;		// create a new node.
-	node* iterator= list;	//Let the free pointer points  
-	node* before ;		// to the list's head.
-
-						
-	new = malloc(sizeof(node));		
-	new->data = value;			
-	new->next = NULL;
-		
+	printf("hey");		 
+	node* new;		
+					
 	if(list=NULL){				//if empty list create the first node
+	printf("coucou"); 
+	new = (node*)malloc(sizeof(node)); 
+	new->data = value; 
+	new->next = NULL;
 	list = new; 
 	}
-	
 
-	else{					//Else iterate through list 
-	 while(iterator != NULL){		// until we found the free spot 
+	else if(list != NULL) {			//Else iterate through list 
+	 
+	node* iterator = list; 
+	
+/*	while(iterator->next  != NULL)
+	 {					// until we found the free spot 
 		iterator = iterator->next;	
 	 }
-	 
-	 new = malloc(sizeof(node));		//Now create a new Node.
+	 new = (node*)malloc(sizeof(node));
 	 new->data = value;
-	 new->next = NULL;
-	 iterator->next = new;
-	  
-	} 
+	 new ->next = NULL;   
+	 iterator->next = new; 
+*/	} 
 }
 
 
@@ -51,15 +49,15 @@ void prettyPrint(){
 	 printf("%d", read->data);	//Print each node's value 
 	 read = read->next; 		// until the one before the last
 	}
-
  }
-
- else 					//If the list is empty just say it.
+ else if (list == NULL)			//If the list is empty just say it.
  {
  printf("Your list is empty.\n"); 
  }
 } 
 
+
+node* find(int);
 
 
 boolean delete(int value){

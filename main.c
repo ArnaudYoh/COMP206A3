@@ -21,7 +21,7 @@ void main(){
 	}
 
 
- while ( !(feof(file)) )						//Create a node for each number present in the file.
+ while ( !feof(file) )						//Create a node for each number present in the file.
  {								
 	fscanf(file, "%d", &value);
 	add(value);
