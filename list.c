@@ -1,39 +1,41 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "list.h"
 
 
 
-
-typedef struct node{				//Defining a Node.
-	int data; 
-	struct node* next; 
-	}node;					//Creating a Node, a list's head , and an iterator. 
-
-node* list=NULL;				//Creating a list's head and an iterator.
+ 
+node* list=NULL;				//Creating a list's head .
 
 
 
-void add(int value){	//Node adding function.
-	
+void add(int value){		//Node adding function.
+ 	
 				//Creating pointers to 
-	node* new;		// create a new node
-	node* iterator= NULL;	// let the free pointer points  
-	iterator = list;	// to the list's head.
+	node* new;		// create a new node.
+	node* iterator= list;	//Let the free pointer points  
+	node* before ;		// to the list's head.
 
-	if(list=NULL){				//If the List is empty,
-	new = (node*)malloc(sizeof(node));	//create the first node
-	new->data = value;			//and let list point to it.
+						
+	new = malloc(sizeof(node));		
+	new->data = value;			
 	new->next = NULL;
-	list = new;
+		
+	if(list=NULL){				//if empty list create the first node
+	list = new; 
 	}
+	
 
-	else{
-	 while(iterator->next != NULL){	//Until we found the free spot iterate
-		iterator = iterator->next;	// through the list.
+	else{					//Else iterate through list 
+	 while(iterator != NULL){		// until we found the free spot 
+		iterator = iterator->next;	
 	 }
-	 new = (node*)malloc(sizeof(node));	//Now create a new Node.
+	 
+	 new = malloc(sizeof(node));		//Now create a new Node.
 	 new->data = value;
 	 new->next = NULL;
+	 iterator->next = new;
+	  
 	} 
 }
 
@@ -42,27 +44,27 @@ void add(int value){	//Node adding function.
 void prettyPrint(){
  
  if(list != NULL)	//if the list is non-empty
-	{
-	printf("Content of list is the following : ");
-	node* read = NULL ;
-	read = list; 
-	while (read->next !=NULL){
+ {
+	printf("Content of list is the following : \n");
+	node* read =  list; 
+	while (read !=NULL){
 	 printf("%d", read->data);	//Print each node's value 
 	 read = read->next; 		// until the one before the last
 	}
-	printf("%d", read->data);	//Print the last node value
-	}
-else 					//If the list is empty just say it.
-	{
-	printf("Your list is empty.");
-	}
- } 
 
-node* find(int);
+ }
 
-int delete(int value){
+ else 					//If the list is empty just say it.
+ {
+ printf("Your list is empty.\n"); 
+ }
+} 
+
+
+
+boolean delete(int value){
  
- node* found = NULL;
+ node* found;
  found = find(value);	
  if(found != NULL)				//If the find() function found
 	{					// a pointer do :
@@ -81,14 +83,14 @@ int delete(int value){
 
 
 node* find(int avalue){
- 	node* pointer = NULL;
-	pointer = list;
- 	while(pointer->next !=NULL)
+ 	node* pointer =list;
+	node* anext;
+	
+ 	while(pointer !=NULL)
 	{
-  	node* anext = NULL;
 	anext = pointer->next; 
-  	if(anext->data == avalue) return pointer;  
-  	pointer = pointer->next; 
+     	 if(anext->data == avalue) return pointer;  
+  	pointer = anext; 
  	}
  	return NULL; 
 }

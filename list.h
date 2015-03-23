@@ -1,12 +1,18 @@
-typedef struct NODE;
+typedef struct node{
+	int data; 
+	struct node* next; 
+}node;
 
-aNode* list;
+#ifndef boolean
+	typedef int boolean; 
+	#define true 1
+	#define false 0
+#endif
  
 void add(int);
 
-delete(int);
+boolean delete(int);
 
 void prettyPrint();
 
-struct NODE* find(int);
-
+node* find(int);
